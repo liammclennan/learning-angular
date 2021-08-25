@@ -1,5 +1,4 @@
-import { Input } from '@angular/core';
-import { Component, OnInit } from '@angular/core';
+import { Input, Output, EventEmitter, Component } from '@angular/core';
 
 @Component({
   selector: 'app-today',
@@ -7,5 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./today.component.scss']
 })
 export class TodayComponent {
-  @Input() today: string = '';
+  @Input() today = new Date();
+  @Output() onNextEvent = new EventEmitter();
+
+  onNext() {
+    this.onNextEvent.emit();
+  }
 }

@@ -7,5 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'learn-angular';
-  today = new Date().toString();
+  today = new Date();
+
+  next() {
+    this.today = new Date(this.today.getTime() + (24*3600*1000));
+  }
 }
