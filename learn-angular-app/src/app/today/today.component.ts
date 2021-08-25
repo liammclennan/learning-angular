@@ -1,3 +1,4 @@
+import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,5 +7,5 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./today.component.scss']
 })
 export class TodayComponent {
-  today = new Date().toString();
+  @Input() today: string = '';
 }
