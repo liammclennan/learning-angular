@@ -6,7 +6,7 @@ import { Input, Output, EventEmitter, Component } from '@angular/core';
   styleUrls: ['./today.component.scss']
 })
 export class TodayComponent {
-  @Input() today = new Date();
+  @Input() today = '';
   @Output() onNextEvent = new EventEmitter();
 
   onNext() {
