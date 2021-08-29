@@ -19,19 +19,20 @@ export class AppComponent implements OnInit {
   }
 
   next() {
-    this.store.dispatch({ type: '[Today] NEXT_DAY' });
+    this.store.dispatch(nextDayAction());
   }
 }
 
 export interface TodayState {
   day: Date
 }
+const nextDayAction = createAction('[Today] NEXT_DAY');
 
 export const appReducer = createReducer<TodayState>(
   {
     day: new Date()
   },
-  on(createAction('[Today] NEXT_DAY'), state => {
+  on(nextDayAction, state => {
     return {...state, day: new Date(state.day.getTime() + (24*3600*1000)) };
   })
 );
