@@ -2,22 +2,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppComponent, appReducer } from './app.component';
 import { TodayComponent } from './today/today.component';
-import { ActionReducer, createAction, createReducer, on, StoreModule } from '@ngrx/store';
-
-interface TodayState {
-  date: Date
-}
-
-const appReducer = createReducer(
-  {
-    day: new Date()
-  },
-  on(createAction('[Today] NEXT_DAY'), state => {
-    return {...state, day: new Date(state.day.getTime() + (24*3600*1000)) };
-  })
-);
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -27,7 +16,11 @@ const appReducer = createReducer(
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({today: appReducer})
+    StoreModule.forRoot({today: appReducer}),
+    StoreDevtoolsModule.instrument({
+      name: 'Learning Angular',
+      logOnly: environment.production
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
